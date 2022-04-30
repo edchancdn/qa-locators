@@ -21,11 +21,11 @@ public class ZoomTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.get("https://zoom.us/");
     }
 
     @Test
     public void tc1() {
-        driver.get("https://zoom.us/");
         driver.manage().window().maximize();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".top-contactsales.top-sales"))).click();
 
@@ -36,6 +36,14 @@ public class ZoomTest {
 
         Select drpEmployeeCnt = new Select(driver.findElement(By.cssSelector("#employee_count")));
         drpEmployeeCnt.selectByVisibleText("51-250");
+    }
+
+    @Test
+    public void tc2() throws InterruptedException {
+        driver.manage().window().maximize();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#btnJoinMeeting"))).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#join-confno"))).sendKeys("123456789");
     }
 
     @AfterSuite
