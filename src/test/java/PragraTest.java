@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -20,12 +21,16 @@ public class PragraTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @BeforeMethod
+    public void loadBaseUrl() {
         driver.get("https://pragra.io/");
+        driver.manage().window().maximize();
     }
 
     @Test
     public void tc1() throws InterruptedException {
-        driver.manage().window().maximize();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next a[href='/apply']"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#first_name"))).sendKeys("John");

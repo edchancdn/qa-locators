@@ -5,7 +5,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -21,12 +23,16 @@ public class ZoomTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
+
+    @BeforeMethod
+    public void loadBaseUrl() {
         driver.get("https://zoom.us/");
+        driver.manage().window().maximize();
     }
 
     @Test
     public void tc1() {
-        driver.manage().window().maximize();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".top-contactsales.top-sales"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#email"))).sendKeys("johndoe@mail.com");
@@ -36,6 +42,8 @@ public class ZoomTest {
 
         Select drpEmployeeCnt = new Select(driver.findElement(By.cssSelector("#employee_count")));
         drpEmployeeCnt.selectByVisibleText("51-250");
+
+        Assert.assertEquals(driver.getTitle(), "Contact Sales | Zoom");
     }
 
     @Test
@@ -44,6 +52,8 @@ public class ZoomTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#btnJoinMeeting"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#join-confno"))).sendKeys("123456789");
+
+        Assert.assertEquals(driver.getTitle(), "Join Meeting - Zoom");
     }
 
     @AfterSuite
