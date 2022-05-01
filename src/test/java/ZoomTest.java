@@ -39,7 +39,7 @@ public class ZoomTest {
     }
 
     @Test
-    public void tc2() throws InterruptedException {
+    public void tc2() {
         driver.manage().window().maximize();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#btnJoinMeeting"))).click();
 
