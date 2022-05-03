@@ -31,7 +31,7 @@ public class PragraTest {
 
     @Test
     public void tc1() throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#__next a[href='/apply']"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#__next a[href='/apply']"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#first_name"))).sendKeys("John");
         driver.findElement(By.cssSelector("#last_name")).sendKeys("Deer");

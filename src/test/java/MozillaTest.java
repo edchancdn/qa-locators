@@ -44,8 +44,11 @@ public class MozillaTest {
     public void tc1() {
         driver.navigate().to("https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe");
 
-        WebElement iframe1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div>iframe[title='MDN Web Docs Interactive Example']")));
-        driver.switchTo().frame(iframe1);
+        //WebElement iframe1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div>iframe[title='MDN Web Docs Interactive Example']")));
+        //driver.switchTo().frame(iframe1);
+
+        // This is an alternate code to combine the 2 lines of code above
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("div>iframe[title='MDN Web Docs Interactive Example']")));
 
         Assert.assertTrue(webElementExists(By.cssSelector("#reset")));
     }

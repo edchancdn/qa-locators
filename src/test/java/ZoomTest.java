@@ -33,7 +33,7 @@ public class ZoomTest {
 
     @Test
     public void tc1() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".top-contactsales.top-sales"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a.top-contactsales.top-sales[href='https://explore.zoom.us/contactsales']"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#email"))).sendKeys("johndoe@mail.com");
         driver.findElement(By.cssSelector("#company")).sendKeys("Acme Inc");
@@ -49,7 +49,7 @@ public class ZoomTest {
     @Test
     public void tc2() {
         driver.manage().window().maximize();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#btnJoinMeeting"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#btnJoinMeeting"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#join-confno"))).sendKeys("123456789");
 
