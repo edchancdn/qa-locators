@@ -47,7 +47,7 @@ public class MozillaTest {
         //WebElement iframe1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div>iframe[title='MDN Web Docs Interactive Example']")));
         //driver.switchTo().frame(iframe1);
 
-        // This is an alternate code to combine the 2 lines of code above
+        // This is an alternate code to combine 2 steps of locate and switch to a frame
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("div>iframe[title='MDN Web Docs Interactive Example']")));
 
         Assert.assertTrue(webElementExists(By.cssSelector("#reset")));
